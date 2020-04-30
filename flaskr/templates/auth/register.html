@@ -6,13 +6,11 @@
 
 {% block content %}
   <h2>Registration at Flaskr</h2>
-  {% if get_flashed_messages() %}
-    <p>{{ get_flashed_messages()[0] }}</p>
-  {% endif %}
   <form action="{{ url_for('auth.register') }}" method="POST">
     <input type="text" placeholder="Username" id="username" name="username"><br>
-    <input type="password" placeholder="Password" id="password1" name="password1"><br>
+    <input type="password" placeholder="Password" id="password" name="password"><br>
     <input type="password" placeholder="Password" id="password2" name="password2"><br>
+    {% include 'includes/list_flashed.html' %}
     <button type="submit">Submit!</button>
   </form>
 {% endblock %}

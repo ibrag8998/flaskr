@@ -1,6 +1,10 @@
 import os
 
-from flask import Flask
+from flask import (
+    Flask,
+    redirect,
+    url_for
+)
 
 from . import db
 from . import auth
@@ -26,12 +30,13 @@ def create_app(test_config=None):
     except OSError:
         pass
 
-    @app.route('/hello')
-    def hello():
-        return 'Hello, World!'
-
     db.init_app(app)
     app.register_blueprint(auth.bp)
+
+    @app.route('/hello')
+    def hello():
+        return 'Hello!'
+        #return redirect(url_for('auth.register'))
 
     return app
 
