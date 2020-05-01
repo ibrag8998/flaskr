@@ -1,16 +1,22 @@
 {% extends 'wrapper.html' %}
 
-{% block title %}
-  Register - {{ block.super }}
+{% block header %}
+  <h2>{% block title %} Register {% endblock %}</h2>
 {% endblock %}
 
 {% block content %}
-  <h2>Registration at Flaskr</h2>
   <form action="{{ url_for('auth.register') }}" method="POST">
-    <input type="text" placeholder="Username" id="username" name="username"><br>
-    <input type="password" placeholder="Password" id="password" name="password"><br>
-    <input type="password" placeholder="Password" id="password2" name="password2"><br>
+    <label for="username">Choose your username</label>
+    <input type="text" placeholder="Username" id="username" name="username" required><br>
+    
+    <label for="password">Choose your password</label>
+    <input type="password" placeholder="Password" id="password" name="password" required><br>
+    
+    <label for="password2">Re-enter your password</label>
+    <input type="password" placeholder="Password" id="password2" name="password2" required><br>
+    
     {% include 'includes/list_flashed.html' %}
+
     <button type="submit">Submit!</button>
   </form>
 {% endblock %}

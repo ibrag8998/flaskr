@@ -1,0 +1,21 @@
+.username-btn {
+  background-color: #275a90;
+  color: white;
+}
+
+.username-btn:hover {
+  background-color: #173454;
+  color: white;
+}
+
+br {
+  display: block;
+}
+
+header {
+  padding: 10px;
+}
+
+h1, h2 {
+  margin-top: 5px;
+}

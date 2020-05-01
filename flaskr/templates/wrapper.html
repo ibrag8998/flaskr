@@ -4,11 +4,42 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="{{ url_for('static', filename='css/tacit.css') }}">
-  <title>{% block titile %} Flaskr {% endblock %}</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+  <title>{% block title %}{% endblock %} - Flaskr</title>
 </head>
 <body>
-  {% block content %}
-    Content
-  {% endblock %}
+  <nav>
+    <h1>Flaskr</h1>
+    <ul>
+      {% if g.user %}
+        <li>
+          <a href="#">
+            <button class="btn username-btn">{{ g.user['username'] }}</button>
+          </a>
+        </li>
+        <li><a href="{{ url_for('auth.logout') }}">
+          <button class="btn nav-btn">Log Out</button>
+        </a></li>
+      {% else %}
+        <li><a href="{{ url_for('auth.register') }}">
+          <button class="btn nav-btn">Register</button>
+        </a></li>
+        <li><a href="{{ url_for('auth.login') }}">
+          <button class="btn nav-btn">Log In</button>
+        </a></li>
+      {% endif %}
+    </ul>
+  </nav>
+  <section class="content">
+    <header>
+      {% block header %}{% endblock %}
+    </header>
+    <div class="flash-container">
+      {% for message in get_flashed_messages() %}
+        <div class="flash">{{ message }}</div>
+      {% endfor %}
+    </div>
+    {% block content %}{% endblock %}
+  </section>
 </body>
 </html>
