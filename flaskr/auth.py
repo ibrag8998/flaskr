@@ -79,7 +79,7 @@ def login():
         if err is None:
             session.clear()
             session['user_id'] = user['id']
-            return redirect(url_for('index'))
+            return redirect(url_for('blog.index'))
 
         flash(err)
 
@@ -89,7 +89,7 @@ def login():
 @bp.route('/logout')
 def logout():
     session.clear()
-    return redirect(url_for('index'))
+    return redirect(url_for('blog.index'))
 
 
 @bp.before_app_request
@@ -107,10 +107,10 @@ def load_user():
 
 def login_required(view):
     @functools.wraps(view)
-    def wrapper_view(**kwargs):
+    def wrapper_view(*args, **kwargs):
         if g.user is None:
             return redirect(url_for('auth.login'))
 
-        return view(**kwargs)
+        return view(*args, **kwargs)
     return wrapper_view
 

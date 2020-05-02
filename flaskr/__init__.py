@@ -8,6 +8,7 @@ from flask import (
 
 from . import db
 from . import auth
+from . import blog
 
 
 def create_app(test_config=None):
@@ -32,16 +33,12 @@ def create_app(test_config=None):
 
     db.init_app(app)
     app.register_blueprint(auth.bp)
-
-    # to be deleted
-    @app.route('/')
-    def index():
-        return redirect(url_for('auth.login'))
+    app.register_blueprint(blog.bp)
+    app.add_url_rule('/', endpoint='index')
 
     @app.route('/hello')
     def hello():
         return 'Hello!'
-        #return redirect(url_for('auth.register'))
 
     return app
 
