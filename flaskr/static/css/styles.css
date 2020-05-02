@@ -19,3 +19,11 @@ header {
 h1, h2 {
   margin-top: 5px;
 }
+
+.btn-danger {
+  background-color: rgb(172, 0, 0)!important;
+}
+
+.post {
+  margin-bottom: 10px;
+}
